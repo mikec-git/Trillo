@@ -16,8 +16,16 @@
     --shadow-light: 0 2rem 5rem rgba(0,0,0,.06);
 
     --line: 1px solid var(--color-grey-light-2);
-
 }
+
+$bp-largest: 75em;      // 1200px/16
+$bp-large: 68.75em;     // 1100px/16
+$bp-medium: 56.25em;    // 900px/16
+$bp-small: 37.5em;      // 600px/16
+$bp-smallest: 31.25em;  // 500px/16
+$bp-tiny: 27.5em;       // 440px/16
+$bp-tiniest: 24.06em;   // 385px/16
+$bp-micro: 21.875em;    // 350px/16
 
 *,
 *::before,
@@ -30,6 +38,11 @@
 html {
     box-sizing: border-box;
     font-size: 62.5%;
+
+    @media only screen and (max-width: $bp-large) {
+        font-size: 50%;
+    }
+
 }
 
 body {
