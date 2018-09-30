@@ -87,42 +87,30 @@
     align-items: center;
     position: relative;
 
-    & > * {
-        padding: 0 2rem;
-        cursor: pointer;
-        height: 100%;
+    & > * {        
         display: flex;
         align-items: center;
 
-        &:hover {
+        &:not(.message) {
+            padding: 0 2rem;
+            cursor: pointer;
+            height: 100%;
+        }
+
+        &:hover:not(.message) {
             background-color: var(--color-grey-light-2);
         }
     }
 
     &__icon-box {
         position: relative;
-        
-        &--message::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 100;
-            height: 2rem;
-            width: 2rem;
-            background-color: #fff;
-            clip-path: polygon(0 100%, 50% 25%, 100% 100%);
-            box-shadow: var(--shadow-dark);
-        }
     }
-
-    &__icon-box--message:hover {
-        .message{
-            transform: scaleY(1);
-            opacity: 1;
-            box-shadow: var(--shadow-dark);
-        }
+    
+    &__icon-box--message:hover + .message,
+    .message:hover {
+        transform: scaleY(1);
+        opacity: 1;
+        box-shadow: var(--shadow-dark);
     }
     
     &__icon {
@@ -208,47 +196,73 @@
 // MESSAGES
 .message {
     background-color: #fff;
+    flex-direction: column;
     position: absolute;
-    top: 100%;
-    right: -2rem;
+    top: 7rem;
+    right: 2rem;
     width: 40rem;
-    font-size: 1.3rem;    
+    font-size: 1.3rem;
+    padding: 0;
+
     transform: scaleY(0);
     transform-origin: top;
     opacity: 0;
     transition: all 200ms;    
     border-bottom-right-radius: .5rem;
     border-bottom-left-radius: .5rem;
-    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        bottom: 100%;
+        right: 28%;
+        transform: translateX(-50%);
+        height: 2rem;
+        width: 2rem;
+        background-color: #fff;
+        clip-path: polygon(0 100%, 50% 25%, 100% 100%);
+    }
+
+    // @media only screen and (max-width: $bp-tiny) {
+    //     right: -12.5rem;
+    //     width: 100vw;
+    // }
     
     &__heading {
         display: flex;
         align-items: center;
-        border-bottom: 1px solid rgba(#999, .2);        
-        color: rgba(#999, .95);
+        width: 100%;
+        border-bottom: 1px solid rgba(#999, .2);
+        padding: 1.25rem 1rem;
         
         & > * {
+            display: inline-block;
             text-transform: capitalize;
-            padding: 1.25rem 1.5rem;
+            padding: 0 1rem;
             transition: all 200ms;
+            white-space: nowrap;
+            cursor: pointer;
 
             &:last-child {
                 margin-left: auto;
             }
 
             &:hover {
-                background-color: var(--color-grey-light-2);
                 color: var(--color-primary);
             }
         }
     }
 
-    &__heading-recent {
-        font-weight: 700;
-    }
-    
     &__body {
-        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__heading-recent,
+    &__username {
+        font-weight: 600;
     }
     
     &__user {
@@ -256,28 +270,11 @@
         align-items: center;
         padding: 1.1rem 1.5rem;
         position: relative;
+        cursor: pointer;
         
         &:not(:last-child) {
             border-bottom: var(--line);
         }
-    }
-
-    &__user:hover &__box::before {
-        transform: scaleY(1);
-        width: 100%;
-    }
-    
-    &__user-photo {
-        height: 5rem;
-        width: 5rem;
-        border-radius: 50%;
-        margin-right: 2rem;
-    }
-    
-    &__box {
-        display: flex;
-        flex-direction: column;
-        margin-right: auto;
         
         &::before {
             content: '';
@@ -290,9 +287,35 @@
             transform: scaleY(0);
             transition: transform 200ms,
                         width 400ms cubic-bezier(1,0,0,1) 200ms;
-            
         }
+
+        &:last-child::before {
+            border-bottom-right-radius: .5rem;
+            border-bottom-left-radius: .5rem;
+        }
+        
+        &:hover::before {
+            transform: scaleY(1);
+            width: 100%;
+        }
+    }   
+    
+    &__user-photo {
+        height: 5rem;
+        width: 5rem;
+        border-radius: 50%;
+        margin-right: 2rem;
+    }
+    
+    &__box {
+        display: flex;
+        flex-direction: column;
+        margin-right: auto;
     }  
+    
+    &__text {
+        font-size: 1.2rem;
+    }
 
     &__box > *,
     &__user-photo,
@@ -301,12 +324,10 @@
         z-index: 5;
     }
 
-    &__username {
-        font-weight: 600;
-    }
-
     &__day {
         color: rgba(#999, .9);
+        font-size: 1.2rem;
+        font-weight: 300;
     }        
 }
 
