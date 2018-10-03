@@ -104,6 +104,10 @@
         opacity: 1;
         transform-origin: top;
         transition: all 200ms;
+
+        @media only screen and (max-width: $bp-smallest) {
+            left: 0;
+        }
     }
     
     &__suggestions-list {
@@ -263,6 +267,14 @@
     transition: all 200ms;    
     border-radius: 0 0 .5rem .5rem;
 
+    @media only screen and (max-width: $bp-smallest) {
+        // top: 5rem;
+        top: 9.5rem;
+        right: 0;
+        width: 100vw;
+        border-radius: 0;
+    }
+    
     &::before {
         content: '';
         position: absolute;
@@ -273,13 +285,12 @@
         width: 2rem;
         background-color: #fff;
         clip-path: polygon(0 100%, 50% 25%, 100% 100%);
+
+        @media only screen and (max-width: $bp-smallest) {
+            display: none;
+        }
     }
 
-    // @media only screen and (max-width: $bp-tiny) {
-    //     right: -12.5rem;
-    //     width: 100vw;
-    // }
-    
     &__heading {
         display: flex;
         align-items: center;
@@ -510,7 +521,7 @@
     }
     
     &__item:hover &__photo {
-        transform: translateY(-.5rem) scale(1.1);
+        transform: translateY(-.5rem) scale(1.05);
         filter: blur(.2rem) brightness(80%);
 
         @media only screen and (max-width: $bp-smallest) {
