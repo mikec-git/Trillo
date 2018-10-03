@@ -130,7 +130,8 @@ body {
   flex: 0 0 40%;
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  position: relative; }
   @media only screen and (max-width: 31.25em) {
     .search {
       order: 1;
@@ -159,6 +160,13 @@ body {
       color: var(--color-grey-dark-3); }
   .search__input:focus + .search__button {
     background-color: var(--color-grey-light-3); }
+  .search__input:placeholder-shown ~ .search__suggestions,
+  .search__input:not(:focus) ~ .search__suggestions {
+    visibility: hidden;
+    opacity: 0;
+    transform: scaleY(0); }
+  .search__input:not(:placeholder-shown) {
+    border-radius: 1rem 1rem 0 0; }
   .search__button {
     border: none;
     background-color: var(--color-grey-light-2); }
@@ -173,6 +181,37 @@ body {
     @media only screen and (max-width: 31.25em) {
       .search__icon {
         display: flex; } }
+  .search__suggestions {
+    visibility: visible;
+    position: absolute;
+    top: 100%;
+    left: 1.5%;
+    z-index: 100;
+    font-size: 1.6rem;
+    color: inherit;
+    background-color: var(--color-grey-light-2);
+    border-radius: 0 0 1rem 1rem;
+    padding: .7rem 1.5rem;
+    width: 100%;
+    box-shadow: 0 3rem 3rem 0rem rgba(0, 0, 0, 0.3);
+    transform: scaleY(1);
+    opacity: 1;
+    transform-origin: top;
+    transition: all 200ms; }
+  .search__suggestions-list {
+    list-style: none;
+    width: 100%; }
+  .search__suggestions-item {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 0;
+    cursor: pointer; }
+  .search__suggestions-item:hover .search__suggestions-name {
+    color: var(--color-primary);
+    transition: color 300ms; }
+  .search__suggestions-location {
+    margin-left: auto;
+    font-size: 1.4rem; }
 
 .user-nav {
   align-self: stretch;
@@ -225,8 +264,7 @@ body {
     transform: scaleY(0);
     transform-origin: top;
     transition: all 300ms;
-    border-bottom-right-radius: .5rem;
-    border-bottom-left-radius: .5rem; }
+    border-radius: 0 0 .5rem .5rem; }
   .user-nav__user:hover .user-nav__dropdown {
     background-color: #fff;
     transform: scaleY(1);
@@ -258,14 +296,14 @@ body {
   top: 7rem;
   right: 2rem;
   width: 40rem;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   padding: 0;
+  z-index: 1000;
   transform: scaleY(0);
   transform-origin: top;
   opacity: 0;
   transition: all 200ms;
-  border-bottom-right-radius: .5rem;
-  border-bottom-left-radius: .5rem; }
+  border-radius: 0 0 .5rem .5rem; }
   .message::before {
     content: '';
     position: absolute;
@@ -334,7 +372,7 @@ body {
     flex-direction: column;
     margin-right: auto; }
   .message__text {
-    font-size: 1.2rem; }
+    font-size: 1.4rem; }
   .message__box > *, .message__user-photo, .message__day {
     position: relative;
     z-index: 5; }
