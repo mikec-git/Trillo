@@ -98,7 +98,6 @@
         color: inherit;
         background-color: var(--color-grey-light-2);
         border-radius: 0 0 1rem 1rem;
-        padding: .7rem 1.5rem;
         width: 100%;
         box-shadow: 0 3rem 3rem 0rem rgba(0, 0, 0, .3);
         transform: scaleY(1);
@@ -106,7 +105,7 @@
         transform-origin: top;
         transition: all 200ms;
     }
-
+    
     &__suggestions-list {
         list-style: none;
         width: 100%;
@@ -115,8 +114,9 @@
     &__suggestions-item {
         display: flex;
         align-items: center;
-        padding: 1.5rem 0;
+        padding: 1.5rem 1.5rem;
         cursor: pointer;
+        border-top: 1px solid rgba(#999, .2);
     }
     
     &__suggestions-item:hover &__suggestions-name {
@@ -496,38 +496,99 @@
 .gallery {
     display: flex;
     
-    @media only screen and (max-width: $bp-tiny) {
+    @media only screen and (max-width: $bp-smallest) {
         position: relative;
-        display: block;
     }
 
+    &__item {
+        overflow: hidden;
+        position: relative;
+
+        @media only screen and (max-width: $bp-smallest) {
+            position: static;
+        }
+    }
+    
+    &__item:hover &__photo {
+        transform: translateY(-.5rem) scale(1.1);
+        filter: blur(.2rem) brightness(80%);
+
+        @media only screen and (max-width: $bp-smallest) {
+            transform: none;
+            filter: none;
+        }
+    }
+    
+    &__item:hover &__caption {
+        opacity: 1;
+        visibility: visible;
+    }
+    
     &__photo {
         width: 100%;
         display: block;
+        transition: all 300ms ease;
         
-        @media only screen and (max-width: $bp-tiny) {
+        @media only screen and (max-width: $bp-smallest) {
             animation: fadeIn 30s linear infinite;
         }
-        
-        &--p2 {
-            @media only screen and (max-width: $bp-tiny) {
+
+        &--p2,
+        &--p3 {
+            @media only screen and (max-width: $bp-smallest) {
                 position: absolute;
                 top: 0;
                 left: 0;
+            }
+        }
+        
+        &--p2 {
+            @media only screen and (max-width: $bp-smallest) {
                 animation-delay: -20s;
             }
         }
         
         &--p3 {
-            @media only screen and (max-width: $bp-tiny) {
-                position: absolute;
-                top: 0;
-                left: 0;
+            @media only screen and (max-width: $bp-smallest) {
                 animation-delay: -10s;
             }            
         }
     }
-    
+
+    &__caption {
+        visibility: hidden;
+        display: inline-block;
+        position: absolute;
+        bottom: 1.5rem;
+        right: 2rem;
+        padding: .1rem .9rem;
+        color: var(--color-grey-light-3);
+        background-color: rgba(0,0,0,.6);
+        box-shadow: 0 2rem 4rem rgba(0,0,0,.3);
+        font-size: 2rem;
+        font-weight: 300;
+        opacity: 0;
+        transition: all 300ms;
+
+        @media only screen and (max-width: $bp-smallest) {
+            visibility: visible;
+            bottom: 2.5rem;
+            right: 3rem;
+            animation: fadeIn 30s linear infinite;
+        }
+
+        &--2 {
+            @media only screen and (max-width: $bp-smallest) {
+                animation-delay: -20s;
+            }
+        }
+
+        &--3 {
+            @media only screen and (max-width: $bp-smallest) {
+                animation-delay: -10s;
+            }
+        }
+    }    
 }
 
 @keyframes fadeIn {

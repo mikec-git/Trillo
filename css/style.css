@@ -191,7 +191,6 @@ body {
     color: inherit;
     background-color: var(--color-grey-light-2);
     border-radius: 0 0 1rem 1rem;
-    padding: .7rem 1.5rem;
     width: 100%;
     box-shadow: 0 3rem 3rem 0rem rgba(0, 0, 0, 0.3);
     transform: scaleY(1);
@@ -204,8 +203,9 @@ body {
   .search__suggestions-item {
     display: flex;
     align-items: center;
-    padding: 1.5rem 0;
-    cursor: pointer; }
+    padding: 1.5rem 1.5rem;
+    cursor: pointer;
+    border-top: 1px solid rgba(153, 153, 153, 0.2); }
   .search__suggestions-item:hover .search__suggestions-name {
     color: var(--color-primary);
     transition: color 300ms; }
@@ -455,27 +455,68 @@ body {
 
 .gallery {
   display: flex; }
-  @media only screen and (max-width: 27.5em) {
+  @media only screen and (max-width: 31.25em) {
     .gallery {
-      position: relative;
-      display: block; } }
+      position: relative; } }
+  .gallery__item {
+    overflow: hidden;
+    position: relative; }
+    @media only screen and (max-width: 31.25em) {
+      .gallery__item {
+        position: static; } }
+  .gallery__item:hover .gallery__photo {
+    transform: translateY(-0.5rem) scale(1.1);
+    filter: blur(0.2rem) brightness(80%); }
+    @media only screen and (max-width: 31.25em) {
+      .gallery__item:hover .gallery__photo {
+        transform: none;
+        filter: none; } }
+  .gallery__item:hover .gallery__caption {
+    opacity: 1;
+    visibility: visible; }
   .gallery__photo {
     width: 100%;
-    display: block; }
-    @media only screen and (max-width: 27.5em) {
+    display: block;
+    transition: all 300ms ease; }
+    @media only screen and (max-width: 31.25em) {
       .gallery__photo {
         animation: fadeIn 30s linear infinite; } }
-    @media only screen and (max-width: 27.5em) {
+    @media only screen and (max-width: 31.25em) {
+      .gallery__photo--p2, .gallery__photo--p3 {
+        position: absolute;
+        top: 0;
+        left: 0; } }
+    @media only screen and (max-width: 31.25em) {
       .gallery__photo--p2 {
-        position: absolute;
-        top: 0;
-        left: 0;
         animation-delay: -20s; } }
-    @media only screen and (max-width: 27.5em) {
+    @media only screen and (max-width: 31.25em) {
       .gallery__photo--p3 {
-        position: absolute;
-        top: 0;
-        left: 0;
+        animation-delay: -10s; } }
+  .gallery__caption {
+    visibility: hidden;
+    display: inline-block;
+    position: absolute;
+    bottom: 1.5rem;
+    right: 2rem;
+    padding: .1rem .9rem;
+    color: var(--color-grey-light-3);
+    background-color: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.3);
+    font-size: 2rem;
+    font-weight: 300;
+    opacity: 0;
+    transition: all 300ms; }
+    @media only screen and (max-width: 31.25em) {
+      .gallery__caption {
+        visibility: visible;
+        bottom: 2.5rem;
+        right: 3rem;
+        animation: fadeIn 30s linear infinite; } }
+    @media only screen and (max-width: 31.25em) {
+      .gallery__caption--2 {
+        animation-delay: -20s; } }
+    @media only screen and (max-width: 31.25em) {
+      .gallery__caption--3 {
         animation-delay: -10s; } }
 
 @keyframes fadeIn {
