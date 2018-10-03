@@ -268,7 +268,6 @@
     border-radius: 0 0 .5rem .5rem;
 
     @media only screen and (max-width: $bp-smallest) {
-        // top: 5rem;
         top: 9.5rem;
         right: 0;
         width: 100vw;
@@ -297,6 +296,10 @@
         width: 100%;
         border-bottom: 1px solid rgba(#999, .2);
         padding: 1.25rem 1rem;
+
+        @media only screen and (max-width: $bp-smallest) {
+            padding: 1.25rem 2rem;
+        }
         
         & > * {
             display: inline-block;
@@ -334,6 +337,10 @@
         padding: 1.1rem 1.5rem;
         position: relative;
         cursor: pointer;
+
+        @media only screen and (max-width: $bp-smallest) {
+            padding: 1.1rem 2.5rem;
+        }
         
         &:not(:last-child) {
             border-bottom: var(--line);

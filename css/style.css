@@ -332,6 +332,9 @@ body {
     width: 100%;
     border-bottom: 1px solid rgba(153, 153, 153, 0.2);
     padding: 1.25rem 1rem; }
+    @media only screen and (max-width: 31.25em) {
+      .message__heading {
+        padding: 1.25rem 2rem; } }
     .message__heading > * {
       display: inline-block;
       text-transform: capitalize;
@@ -356,6 +359,9 @@ body {
     padding: 1.1rem 1.5rem;
     position: relative;
     cursor: pointer; }
+    @media only screen and (max-width: 31.25em) {
+      .message__user {
+        padding: 1.1rem 2.5rem; } }
     .message__user:not(:last-child) {
       border-bottom: var(--line); }
     .message__user::before {
